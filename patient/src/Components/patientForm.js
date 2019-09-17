@@ -9,7 +9,6 @@ const PatientForm = props => {
         touched,
         values,
         status,
-        onChange,
         history
     } = props
 
@@ -19,8 +18,6 @@ const PatientForm = props => {
         if (status) {
             setPatientInfo([...patientInfo, status]);
         }
-        console.log("status:", patientInfo);
-
     }, [patientInfo,status])
 
     return (
@@ -51,7 +48,6 @@ const formiKHOC = withFormik({
                 .required("input required"),
         }),
     handleSubmit(values, { setStatus, resetForm }) {
-        console.log(values);
         setStatus(values);
         resetForm();
     }
