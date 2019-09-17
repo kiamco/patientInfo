@@ -1,5 +1,7 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { withFormik, Form, Field } from 'formik';
+import * as Yup from 'yup';
+
 
 const PatientForm = props => {
     const {
@@ -11,14 +13,14 @@ const PatientForm = props => {
         history
     } = props
 
-    const [patientInfo, setPatientInfo];
+    const [patientInfo, setPatientInfo] = useState([]);
 
-    useEffect(()=> {
-        if(status){
+    useEffect(() => {
+        if (status) {
             setPatientInfo([...patientInfo, status]);
         }
-    },[patientInfo])
-    
+    }, [patientInfo])
+
     return (
         <div className='form-container'>
             <Form>
@@ -39,7 +41,16 @@ const formiKHOC = withFormik({
             description: description || ''
         }
     },
+    validationSchema: Yup
+        .object()
+        .shape({
+            name: Yup
+                .string()
+                .required("input required"),
+        }),
     handleSubmit(values, { setStatus, resetForm }) {
         setStatus(values);
     }
-})
+})(PatientForm);
+
+export default formiKHOC;
