@@ -19,14 +19,16 @@ const PatientForm = props => {
         if (status) {
             setPatientInfo([...patientInfo, status]);
         }
-    }, [patientInfo])
+        console.log("status:", patientInfo);
+
+    }, [patientInfo,status])
 
     return (
         <div className='form-container'>
             <Form>
                 <Field type='input' className='input' name='name' placeholder='name' />
-                <Field type='input' className='input' name='name' placeholder='other' />
-                <Field component='textarea' className='input' name='name' placeholder='description' />
+                <Field type='input' className='input' name='other' placeholder='other' />
+                <Field component='textarea' className='input' name='description' placeholder='description' />
                 <button type='submit'> Submit </button>
             </Form>
         </div>
@@ -49,7 +51,9 @@ const formiKHOC = withFormik({
                 .required("input required"),
         }),
     handleSubmit(values, { setStatus, resetForm }) {
+        console.log(values);
         setStatus(values);
+        resetForm();
     }
 })(PatientForm);
 
