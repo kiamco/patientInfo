@@ -1,23 +1,25 @@
-import React, {useState,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import Form from './patientForm';
+import useModal from '../Hooks/useToggle';
 
 const FormModal = (props) => {
 
-    const [show, setShow] = useState(false);
+    const [show, toggleModal] = useModal(false);
+    const [patients, setPatients] = useState();
 
-    const toggleModal = () => {
-        !show ? setShow(true) : setShow(false);
+    const getFromData = (patientData) => {
+        setPatients(patientData)
     }
 
-    useEffect(()=> {
+    useEffect(() => {
+        patients ? props.getData(patients) : console.log('asdas');
+    }, [show, patients])
 
-    }, [show])
-
-    return(
-        <div>
-            <button onClick={toggleModal}>Add patient</button>
-            {show && <Form />}
-        </div>
+    return (
+            <div>
+                <button onClick={toggleModal}>Add patient</button>
+                {show && <Form getPatientData={getFromData} />}
+            </div>
     )
 }
 

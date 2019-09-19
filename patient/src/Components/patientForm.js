@@ -12,11 +12,12 @@ const PatientForm = props => {
         history
     } = props
 
-    const [patientInfo, setPatientInfo] = useState([]);
+    const [patientInfo, setPatientInfo] = useState();
 
     useEffect(() => {
         if (status) {
-            setPatientInfo([...patientInfo, status]);
+            setPatientInfo(status);
+            props.getPatientData(status);
         }
     }, [patientInfo,status])
 

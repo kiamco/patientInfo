@@ -1,3 +1,5 @@
-import {craeteContext} from 'react';
+import {createContext} from 'react';
 
-export const patientContext = craeteContext();
+const patientContext = createContext();
+
+export default patientContext;
