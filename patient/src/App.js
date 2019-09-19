@@ -1,11 +1,10 @@
 import React from 'react';
 import './Styles/CSS/index.css';
-import Form from './Components/patientForm';
-
+import FormModal from './Components/modal'
 function App() {
   return (
     <div className="App">
-      <Form /> 
+      <FormModal />
     </div>
   );
 }
