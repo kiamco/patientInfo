@@ -1,24 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import React, {useState, useEffect}from 'react';
+import './Styles/CSS/index.css';
+import FormModal from './Components/modal';
+import PatientGroup from './Components/patientGroup';
 function App() {
+
+  const [patients, setPatients] = useState([]);
+
+  const getPatients = (patientData) => {
+    setPatients([...patients,patientData]);
+  }
+
+  useEffect(() => {
+    console.log(patients)
+  }, [patients])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <FormModal getData={getPatients}/>
     </div>
   );
 }
